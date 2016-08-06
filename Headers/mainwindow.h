@@ -10,22 +10,31 @@
 #include <QTime>
 #include <QDebug>
 #include <QUrl>
+#include <QThread>
 #include <QDesktopServices>
 #include <QMessageBox>
 #include "Headers/maintab.h"
 #include "Headers/settingstab.h"
 #include "Headers/logTab.h"
+#include "Headers/secondthread.h"
 
-class MainWindow : public QWidget
+class mainTab;
+class settingsTab;
+class secondThread;
+class mainWnd : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    mainWnd(QWidget *parent = 0);
+    ~mainWnd();
 
 public:
+    bool fileOpenBool = false;
+    bool closeBool = false;
     QTime *time;
+    QDir sDir, dDir;
+    QFileInfoList diffList, diffList1;
     QPushButton *syncBtn;
     QTabWidget *tabs;
     QGridLayout *globalLayout;
@@ -34,10 +43,34 @@ public:
     settingsTab *secondTab;
     logTab *thirdTab;
 
-public:
-    int countSize(QLineEdit *inputLine, QButtonGroup *buttons);
-public slots:
 
+    int curSize = 0;
+    quint64 sumSize = 0;
+    int minFrom1Int = 0;
+    int minFrom2Int = 0;
+    int maxFrom1Int = 0;
+    int maxFrom2Int = 0;
+
+    QStringList extensionsFrom1;
+    QStringList extensionsFrom2;
+
+    secondThread *rthr;
+public:
+    void contentDifference(QDir &sDir, QDir &dDir, QFileInfoList &diffList, int dirNum);
+    void setExtArray(QLineEdit *inputline, QStringList *arr);
+    bool check(QFileInfo info, int folder);
+    bool extToCopy(QFileInfo info, QStringList arr);
+    int countSize(QLineEdit *inputLine, QButtonGroup *buttons);
+    void recursiveContentList(QDir &dir, QFileInfoList &contentList, int dirNum);
+
+signals:
+    void newLogLineSignal(QString str);
+    void updateProgressBarSignal(int value);
+
+public slots:
+    void on_syncBtn_clicked();
+    void newLogLineSlot(QString str);
+    void updateProgressBarSlot(int value);
 };
 
 #endif // MAINWINDOW_H

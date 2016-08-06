@@ -10,14 +10,18 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QFileInfo>
+#include "Headers/mainwindow.h"
+
+class mainWnd;
 
 class mainTab : public QWidget
 {
        Q_OBJECT
 public:
-    mainTab(QWidget * parent = 0);
+    mainTab(mainWnd *_par, QWidget * parent = 0);
 
 public:
+    mainWnd * par;
     QGridLayout *lay;
 
     QLabel *lb1;

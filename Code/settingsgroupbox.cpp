@@ -18,6 +18,7 @@ settingsGroupBox::settingsGroupBox(int num, QWidget *parent) : QGroupBox(parent)
         minSizeByte = new QRadioButton("B");
         minSizeKByte = new QRadioButton("KB");
         minSizeMByte = new QRadioButton("MB");
+
         minSizeBG->addButton(minSizeByte);
         minSizeBG->addButton(minSizeKByte);
         minSizeBG->addButton(minSizeMByte);
@@ -38,6 +39,7 @@ settingsGroupBox::settingsGroupBox(int num, QWidget *parent) : QGroupBox(parent)
         maxSizeByte = new QRadioButton("B");
         maxSizeKByte = new QRadioButton("KB");
         maxSizeMByte = new QRadioButton("MB");
+
         maxSizeBG->addButton(maxSizeByte);
         maxSizeBG->addButton(maxSizeKByte);
         maxSizeBG->addButton(maxSizeMByte);
@@ -60,11 +62,11 @@ settingsGroupBox::settingsGroupBox(int num, QWidget *parent) : QGroupBox(parent)
         lay->addWidget(extensionsCB, 7, 1, 1, 4);
         lay->addWidget(extensionsLE, 8, 1, 1, 4);
 
-        connect(filesCB, QCheckBox::clicked, this, settingsGroupBox::on_filesCB_clicked);
-        connect(foldersCB, QCheckBox::clicked, this, settingsGroupBox::on_foldersCB_clicked);
-        connect(minSizeCB, QCheckBox::clicked, this, settingsGroupBox::on_minSizeCB_clicked);
-        connect(maxSizeCB, QCheckBox::clicked, this, settingsGroupBox::on_maxSizeCB_clicked);
-        connect(extensionsCB, QCheckBox::clicked, this, settingsGroupBox::on_extensionsCB_clicked);
+        connect(filesCB, &QCheckBox::clicked, this, &settingsGroupBox::on_filesCB_clicked);
+        connect(foldersCB, &QCheckBox::clicked, this, &settingsGroupBox::on_foldersCB_clicked);
+        connect(minSizeCB, &QCheckBox::clicked, this, &settingsGroupBox::on_minSizeCB_clicked);
+        connect(maxSizeCB, &QCheckBox::clicked, this, &settingsGroupBox::on_maxSizeCB_clicked);
+        connect(extensionsCB, &QCheckBox::clicked, this, &settingsGroupBox::on_extensionsCB_clicked);
 
         this->setLayout(lay);
 }

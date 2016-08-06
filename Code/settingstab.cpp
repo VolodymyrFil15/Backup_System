@@ -1,7 +1,8 @@
 #include "Headers/settingstab.h"
 
-settingsTab::settingsTab(QWidget *parent) : QWidget(parent)
+settingsTab::settingsTab(mainWnd * _par, QWidget *parent) : QWidget(parent)
 {
+    par = _par;
     lay = new QGridLayout(this);
 
     firstSGB = new settingsGroupBox(1, this);
@@ -15,16 +16,16 @@ settingsTab::settingsTab(QWidget *parent) : QWidget(parent)
     lay->addWidget(openFileCB, 2, 1);
     lay->addWidget(closeCB, 2, 2);
 
-    connect(openFileCB, QCheckBox::clicked, this, settingsTab::on_openFileCB_clicked);
-    connect(closeCB, QCheckBox::clicked, this, settingsTab::on_closeCB_clicked);
+    connect(openFileCB, &QCheckBox::clicked, this, &settingsTab::on_openFileCB_clicked);
+    connect(closeCB, &QCheckBox::clicked, this, &settingsTab::on_closeCB_clicked);
 }
 
 void settingsTab::on_openFileCB_clicked()
 {
-    filesOpenBool = openFileCB->isChecked();
+    par->fileOpenBool = openFileCB->isChecked();
 }
 
 void settingsTab::on_closeCB_clicked()
 {
-    closeBool = closeCB->isChecked();
+    par->closeBool = closeCB->isChecked();
 }

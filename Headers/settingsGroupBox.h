@@ -8,6 +8,7 @@
 #include <QButtonGroup>
 #include <QGroupBox>
 #include <QLineEdit>
+
 #include <QGridLayout>
 
 class settingsGroupBox : public QGroupBox

@@ -5,17 +5,18 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <Headers/settingsGroupBox.h>
+#include "Headers/mainwindow.h"
+
+class mainWnd;
 
 class settingsTab : public QWidget
 {
     Q_OBJECT
 public:
-    explicit settingsTab(QWidget *parent = 0);
+    explicit settingsTab(mainWnd *_par, QWidget *parent = 0);
 
 public:
-
-    bool filesOpenBool = false;
-    bool closeBool = false;
+    mainWnd *par;
 
     settingsGroupBox *firstSGB;
     settingsGroupBox *secondSGB;

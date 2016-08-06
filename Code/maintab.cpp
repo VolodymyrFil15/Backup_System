@@ -1,8 +1,9 @@
 #include "Headers/maintab.h"
 #include "Headers/mainwindow.h"
 
-mainTab::mainTab(QWidget *parent) : QWidget(parent)
+mainTab::mainTab(mainWnd *_par, QWidget *parent) : QWidget(parent)
 {
+    par = _par;
     lay = new QGridLayout(this);
 
     lb1 = new QLabel("Folder 1", this);
@@ -52,8 +53,8 @@ void mainTab::on_lvFirst_doubleClicked(const QModelIndex &index)
     {
         listView->setRootIndex(index);
     }
-    /*else if ((MainWindow.secondTab->openFileCB->isChecked()))
+    else if (par->fileOpenBool)
     {
-        QDesktopServices->openUrl(fileinfo.absoluteFilePath());
-    }*/
+        QDesktopServices::openUrl(fileinfo.absoluteFilePath());
+    }
 }

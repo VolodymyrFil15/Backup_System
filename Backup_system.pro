@@ -13,14 +13,16 @@ TARGET = Backup_system
 TEMPLATE = app
 
 SOURCES += Code/main.cpp\
-        Code/mainwindow.cpp \
+    Code/mainwindow.cpp \
     Code/maintab.cpp \
     Code/settingstab.cpp \
     Code/logTab.cpp \
-    Code/settingsgroupbox.cpp
+    Code/settingsgroupbox.cpp \
+    Code/secondthread.cpp
 
 HEADERS  += Headers/mainwindow.h \
     Headers/maintab.h \
     Headers/settingstab.h \
     Headers/settingsGroupBox.h \
-    Headers/logTab.h
+    Headers/logTab.h \
+    Headers/secondthread.h
