@@ -9,28 +9,19 @@
 
 class mainWnd;
 
-class settingsTab : public QWidget
+class copyingSettings : public QWidget
 {
     Q_OBJECT
 public:
-    explicit settingsTab(mainWnd *_par, QWidget *parent = 0);
+    explicit copyingSettings(mainWnd *_par, QWidget *parent = 0);
 
 public:
     mainWnd *par;
 
     settingsGroupBox *firstSGB;
     settingsGroupBox *secondSGB;
-
-    QCheckBox *openFileCB;
-    QCheckBox *closeCB;
-
     QGridLayout *lay;
 
-signals:
-
-public slots:
-    void on_openFileCB_clicked();
-    void on_closeCB_clicked();
 };
 
 #endif // SETTINGSTAB_H

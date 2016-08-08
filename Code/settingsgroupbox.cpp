@@ -2,22 +2,22 @@
 
 settingsGroupBox::settingsGroupBox(int num, QWidget *parent) : QGroupBox(parent)
 {
-        this->setTitle("Settings for folder " + QString::number(num));
+        this->setTitle(tr("Settings for folder ") + QString::number(num));
 
         lay = new QGridLayout;
         _num = num;
 
-        filesCB = new QCheckBox("Copy files from folder " + QString::number(num));
-        foldersCB = new QCheckBox("Copy folders from folder " + QString::number(num));
+        filesCB = new QCheckBox(tr("Copy files from folder ") + QString::number(num));
+        foldersCB = new QCheckBox(tr("Copy folders from folder ") + QString::number(num));
         lay->addWidget(filesCB, 1, 1, 1, 4);
         lay->addWidget(foldersCB, 2, 1, 1, 4);
 
-        minSizeCB = new QCheckBox("Min size for file to copy from folder " + QString::number(num));
+        minSizeCB = new QCheckBox(tr("Min size for file to copy from folder ") + QString::number(num));
         minSizeLE = new QLineEdit();
         minSizeBG = new QButtonGroup();
-        minSizeByte = new QRadioButton("B");
-        minSizeKByte = new QRadioButton("KB");
-        minSizeMByte = new QRadioButton("MB");
+        minSizeByte = new QRadioButton(tr("B"));
+        minSizeKByte = new QRadioButton(tr("KB"));
+        minSizeMByte = new QRadioButton(tr("MB"));
 
         minSizeBG->addButton(minSizeByte);
         minSizeBG->addButton(minSizeKByte);
@@ -33,12 +33,12 @@ settingsGroupBox::settingsGroupBox(int num, QWidget *parent) : QGroupBox(parent)
         lay->addWidget(minSizeKByte, 4, 3);
         lay->addWidget(minSizeMByte, 4, 4);
 
-        maxSizeCB = new QCheckBox("max size for file to copy from folder " + QString::number(num));
+        maxSizeCB = new QCheckBox(tr("Max size for file to copy from folder ") + QString::number(num));
         maxSizeLE = new QLineEdit();
         maxSizeBG = new QButtonGroup();
-        maxSizeByte = new QRadioButton("B");
-        maxSizeKByte = new QRadioButton("KB");
-        maxSizeMByte = new QRadioButton("MB");
+        maxSizeByte = new QRadioButton(tr("B"));
+        maxSizeKByte = new QRadioButton(tr("KB"));
+        maxSizeMByte = new QRadioButton(tr("MB"));
 
         maxSizeBG->addButton(maxSizeByte);
         maxSizeBG->addButton(maxSizeKByte);
@@ -55,7 +55,7 @@ settingsGroupBox::settingsGroupBox(int num, QWidget *parent) : QGroupBox(parent)
         lay->addWidget(maxSizeKByte, 6, 3);
         lay->addWidget(maxSizeMByte, 6, 4);
 
-        extensionsCB = new QCheckBox("Copy files with this extensions");
+        extensionsCB = new QCheckBox(tr("Copy files with this extensions"));
         extensionsLE = new QLineEdit;
         extensionsLE->setEnabled(extToCopyBool);
 

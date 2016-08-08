@@ -15,11 +15,6 @@ public:
 public:
     QTextBrowser *logHolder;
     QGridLayout *lay;
-
-signals:
-
-public slots:
-
 };
 
 #endif // LOG_H

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+#include <QEvent>
+#include <QApplication>
 #include <QGridLayout>
 #include <QPushButton>
 #include <QListView>
@@ -13,14 +15,17 @@
 #include <QThread>
 #include <QDesktopServices>
 #include <QMessageBox>
+#include <QTranslator>
 #include "Headers/maintab.h"
 #include "Headers/settingstab.h"
 #include "Headers/logTab.h"
 #include "Headers/secondthread.h"
+#include "Headers/programsettings.h"
 
 class mainTab;
-class settingsTab;
+class copyingSettings;
 class secondThread;
+class programSettings;
 class mainWnd : public QWidget
 {
     Q_OBJECT
@@ -40,11 +45,13 @@ public:
     QGridLayout *globalLayout;
     QProgressBar *progressBar;
     mainTab *firstTab;
-    settingsTab *secondTab;
+    copyingSettings *copyingSettingsTab;
     logTab *thirdTab;
+    programSettings *programSettingsTab;
+    QString version;
+    QTranslator *translator;
 
-
-    int curSize = 0;
+    quint64 curSize = 0;
     quint64 sumSize = 0;
     int minFrom1Int = 0;
     int minFrom2Int = 0;
@@ -53,8 +60,11 @@ public:
 
     QStringList extensionsFrom1;
     QStringList extensionsFrom2;
-
     secondThread *rthr;
+protected:
+
+    void changeEvent(QEvent *event);
+
 public:
     void contentDifference(QDir &sDir, QDir &dDir, QFileInfoList &diffList, int dirNum);
     void setExtArray(QLineEdit *inputline, QStringList *arr);
@@ -71,6 +81,7 @@ public slots:
     void on_syncBtn_clicked();
     void newLogLineSlot(QString str);
     void updateProgressBarSlot(int value);
+    void languageChangeSlot(QString postfix);
 };
 
 #endif // MAINWINDOW_H

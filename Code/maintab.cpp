@@ -6,15 +6,14 @@ mainTab::mainTab(mainWnd *_par, QWidget *parent) : QWidget(parent)
     par = _par;
     lay = new QGridLayout(this);
 
-    lb1 = new QLabel("Folder 1", this);
-    lb2 = new QLabel("Folder 2", this);
+    lb1 = new QLabel(tr("Folder 1"), this);
+    lb2 = new QLabel(tr("Folder 2"), this);
 
     lvFirst = new QListView(this);
     lvSecond = new QListView(this);
 
-    levelUp1 = new QPushButton("Level Up", this);
-    levelUp2 = new QPushButton("Level Up", this);
-
+    levelUp1 = new QPushButton(tr("Level Up"), this);
+    levelUp2 = new QPushButton(tr("Level Up"), this);
     lay->addWidget(lb1, 1, 1);
     lay->addWidget(lb2, 1, 2);
 
