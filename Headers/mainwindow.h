@@ -31,7 +31,7 @@ class mainWnd : public QWidget
     Q_OBJECT
 
 public:
-    mainWnd(QWidget *parent = 0);
+    mainWnd(QString lang, QWidget *parent = 0);
     ~mainWnd();
 
 public:
@@ -61,6 +61,7 @@ public:
     QStringList extensionsFrom1;
     QStringList extensionsFrom2;
     secondThread *rthr;
+
 protected:
 
     void changeEvent(QEvent *event);
@@ -76,12 +77,13 @@ public:
 signals:
     void newLogLineSignal(QString str);
     void updateProgressBarSignal(int value);
+    //void languageChangeSignal(QString postfix);
 
 public slots:
     void on_syncBtn_clicked();
     void newLogLineSlot(QString str);
     void updateProgressBarSlot(int value);
-    void languageChangeSlot(QString postfix);
+    //void languageChangeSlot(QString postfix);
 };
 
 #endif // MAINWINDOW_H

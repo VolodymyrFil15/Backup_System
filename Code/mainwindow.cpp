@@ -1,10 +1,13 @@
 #include "Headers/mainwindow.h"
 
-mainWnd::mainWnd(QWidget *parent) : QWidget(parent)
+mainWnd::mainWnd(QString lang, QWidget *parent) : QWidget(parent)
 {
-    version = "v0.1 beta";
+    version = "v0.2 beta";
+
     translator = new QTranslator(this);
+    translator->load("translations/" + QApplication::applicationName() + "_" + lang);
     QApplication::installTranslator(translator);
+
     this->setWindowTitle(tr("Backup system ") + version);
     globalLayout = new QGridLayout(this);
 
@@ -294,13 +297,40 @@ void mainWnd::updateProgressBarSlot(int value)
 {
     progressBar->setValue(value);
 }
-
+/*
 void mainWnd::languageChangeSlot(QString postfix)
 {
     QApplication::removeTranslator(translator);
     translator = new QTranslator(this);
     translator->load("translations/" + QApplication::applicationName() + "_" + postfix);
     QApplication::installTranslator(translator);
+}
+*/
+
+void mainWnd::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange){
+        tabs->removeTab(tabs->indexOf(firstTab));
+        tabs->removeTab(tabs->indexOf(copyingSettingsTab));
+        tabs->removeTab(tabs->indexOf(thirdTab));
+        tabs->removeTab(tabs->indexOf(programSettingsTab));
+        firstTab->close();
+        copyingSettingsTab->close();
+        thirdTab->close();
+        programSettingsTab->close();
+        firstTab = new mainTab(this);
+        //copyingSettingsTab = new copyingSettings(this, lang);
+        thirdTab = new logTab;
+        programSettingsTab = new programSettings(this);
+        tabs->addTab(firstTab, tr("Main"));
+        tabs->addTab(copyingSettingsTab, tr("Copying Settings"));
+        tabs->addTab(thirdTab, tr("Log"));
+        tabs->addTab(programSettingsTab, tr("Program settings"));
+    }
+    else
+    {
+        QWidget::changeEvent(event);
+    }
 }
 
 
@@ -310,24 +340,4 @@ mainWnd::~mainWnd()
 
 }
 
-void mainWnd::changeEvent(QEvent *event)
-{
-    if(event->type() == QEvent::LanguageChange){
-        programSettingsTab->closeCheckBox->setText(tr(syncBtn->text().toStdString().c_str()));
-        syncBtn->setText(tr(syncBtn->text().toStdString().c_str()));
-        tabs->setTabText(tabs->indexOf(firstTab), tr("Main"));
-        tabs->setTabText(tabs->indexOf(copyingSettingsTab), tr("Copying Settings"));
-        tabs->setTabText(tabs->indexOf(thirdTab), tr("Log"));
-        tabs->setTabText(tabs->indexOf(programSettingsTab), tr("Program settings"));
-        QList<QCheckBox *> list = this->findChildren<QCheckBox *>();
-        foreach(QCheckBox * ch, list)
-        {
-            ch->setText(tr(ch->text().toStdString().c_str()));
-            QMessageBox::information(this, " ", tr(ch->text().toStdString().c_str()));
-        }
-    }
-    else
-    {
-        QWidget::changeEvent(event);
-    }
-}
+

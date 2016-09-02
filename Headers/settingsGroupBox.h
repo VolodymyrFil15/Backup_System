@@ -8,7 +8,8 @@
 #include <QButtonGroup>
 #include <QGroupBox>
 #include <QLineEdit>
-
+#include <QTranslator>
+#include <QApplication>
 #include <QGridLayout>
 
 class settingsGroupBox : public QGroupBox
@@ -43,6 +44,7 @@ public:
     QCheckBox *extensionsCB;
     QLineEdit *extensionsLE;
 
+    QTranslator *translator;
     int _num;
 
 public slots:

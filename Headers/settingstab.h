@@ -13,7 +13,7 @@ class copyingSettings : public QWidget
 {
     Q_OBJECT
 public:
-    explicit copyingSettings(mainWnd *_par, QWidget *parent = 0);
+    copyingSettings(mainWnd *_par, QWidget *parent = 0);
 
 public:
     mainWnd *par;

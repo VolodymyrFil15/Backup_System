@@ -23,11 +23,10 @@ public:
     QGridLayout *layout;
     QComboBox *languageComboBox;
     QLabel *languageLabel;
-    QPushButton *setLanguageButton;
     QStringList translations;
 
 signals:
-    void languageChangeSignal(QString postfix);
+    //void languageChangeSignal(QString postfix);
 
 public slots:
     void onOpenFileCheckBoxClicked();

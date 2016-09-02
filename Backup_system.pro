@@ -31,9 +31,3 @@ HEADERS  += Headers/mainwindow.h \
 
 TRANSLATIONS += Translations/backup_system_ru.ts\
     Translations/backup_system_uk.ts
-
-DISTFILES += \
-    Translations/Backup_system_uk.qm \
-    Translations/Backup_system_ru.ts \
-    Translations/Backup_system_uk.ts
-
